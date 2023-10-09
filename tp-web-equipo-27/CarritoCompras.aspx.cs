@@ -1,5 +1,8 @@
-﻿using System;
+﻿using Domain;
+using negocio;
+using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -11,8 +14,17 @@ namespace tp_web_equipo_27
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            dgvCarrito.DataSource = Session;
-            dgvCarrito.DataBind();
+            ArticuloNegocio Negocio = new ArticuloNegocio();
+            if(Session.Count != 0 )
+            {
+                List<Carrito> listaArticulosCarrito = (List<Carrito>)Session[""];
+                dgvCarrito.DataSource = Session;
+                dgvCarrito.DataBind();
+            } else
+            {
+                mensaje.Text = "El carrito se encuentra vacio.";
+            }
+            
         }
     }
 }

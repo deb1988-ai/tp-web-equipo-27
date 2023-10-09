@@ -2,6 +2,9 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+    <br />
+    <asp:GridView runat="server" CssClass="table" ID="dgvCarrito">
 
-    <asp:GridView runat="server" ID="dgvCarrito">   </asp:GridView>
+    </asp:GridView>
+    <asp:Label ID="mensaje" runat="server" Text=""></asp:Label>
 </asp:Content>

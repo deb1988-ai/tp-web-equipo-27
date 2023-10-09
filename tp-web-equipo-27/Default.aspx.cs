@@ -12,10 +12,12 @@ namespace tp_web_equipo_27
     public partial class Default : System.Web.UI.Page
     {
         public List<Articulo> ListaArticulos { get; set; }
+        public int idArticuloSeleccionado { get; set; }
         protected void Page_Load(object sender, EventArgs e)
         {
             ArticuloNegocio negocio = new ArticuloNegocio();
             ListaArticulos = negocio.listarArticulos();
+            
             if (!IsPostBack)
             {
                 repRepetidor.DataSource = ListaArticulos;
@@ -23,10 +25,15 @@ namespace tp_web_equipo_27
             }
         }
 
-        protected void btnAgregarAlCarro_Click(object sender, EventArgs e)
+        protected void btnDetalle_Click(object sender, EventArgs e)
         {
-            string valor = ((Button)sender).CommandArgument;
-            Session.Add(valor, ListaArticulos);
+            string id = ((Button)sender).CommandArgument;
+            Response.Redirect("Producto.aspx?id=" + id);
+        }
+
+        protected void VerCarrito_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("CarritoCompras.aspx");
         }
     }
 }

@@ -13,12 +13,14 @@ namespace tp_web_equipo_27
     public partial class Producto : System.Web.UI.Page
     {
         public int idArticuloSeleccionado { get; set; }
+
         public Articulo articulo = new Articulo();
         public List<Articulo> ListaArticulos { get; set; }
-
         public List<Imagenes> ListaImagenes { get; set; }
         protected void Page_Load(object sender, EventArgs e)
         {
+            idArticuloSeleccionado = Convert.ToInt32(Request.QueryString["id"]);
+
             ArticuloNegocio negocio = new ArticuloNegocio();
 
             ListaArticulos = negocio.listarArticulos();
@@ -31,20 +33,24 @@ namespace tp_web_equipo_27
             {
                 if (!IsPostBack)
                 {
-                    idArticuloSeleccionado = Convert.ToInt32(Request.QueryString["id"]);
-
                     ListaImagenes = negocioImagen.listarImagenes(idArticuloSeleccionado);
 
-                    for (int i = 0; i < ListaArticulos.Count; i++)
+                    foreach (var item in ListaArticulos)
                     {
-                        if (idArticuloSeleccionado == ListaArticulos[i].Id)
+                        if(idArticuloSeleccionado == item.Id)
                         {
-                            articulo = ListaArticulos[i];
+                            articulo = item;
+                            articulo.ListaImagenes = item.ListaImagenes;
                         }
                     }
 
-                    repRepetidorImagenes.DataSource = ListaImagenes;
-                    repRepetidorImagenes.DataBind();
+                    foreach (var item in articulo.ListaImagenes)
+                    {
+                        listaUrlImagenes.Add(item.ImagenUrl);
+                    }
+                  
+                   // repRepetidorImagenes.DataSource = listaUrlImagenes;
+                   // repRepetidorImagenes.DataBind();
                     lblNombre.Text = articulo.Nombre;
                     lblDescripcion.Text = articulo.Descripcion;
                     lblPrecio.Text = Math.Round(articulo.Precio,2).ToString();
@@ -65,6 +71,7 @@ namespace tp_web_equipo_27
             {
                 idArticuloSeleccionado = Convert.ToInt32(Request.QueryString["id"]);
 
+                
                 for (int i = 0; i < ListaArticulos.Count; i++)
                 {
                     if (idArticuloSeleccionado == ListaArticulos[i].Id)

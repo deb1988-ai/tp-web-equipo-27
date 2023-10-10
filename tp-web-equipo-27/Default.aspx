@@ -19,7 +19,7 @@
                             </div>
                             <div class="carousel-inner">
                                 <div class="carousel-item active">
-                                    <img src="" class="d-block w-25" alt="...">
+                                    <img src="<%#Eval("ListaImagenes[0].ImagenUrl") %>" class="d-block w-25" alt="...">
                                 </div>
                             </div>
                             <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">

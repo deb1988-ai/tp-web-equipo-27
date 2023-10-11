@@ -80,7 +80,7 @@ namespace tp_web_equipo_27
                     }
                 }
                 carrito.IdArticulo = articulo.Id;
-                carrito.articulo = articulo;
+                carrito.Articulo = articulo;
                 carrito.Cantidad = Convert.ToInt32(txtCantidad.Text);
             }
             if (Session["ListaCarrito"] != null)

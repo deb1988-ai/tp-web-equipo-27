@@ -16,7 +16,7 @@
                 <%
                     try
                     {
-                        if (idArticuloSeleccionado != null)
+                        if (idArticuloSeleccionado != null && idArticuloSeleccionado != 0)
                         {
                             foreach (dominio.Imagenes imagen in ListaImagenes)
                             {

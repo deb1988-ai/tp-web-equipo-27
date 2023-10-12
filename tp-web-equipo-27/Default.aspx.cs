@@ -30,10 +30,5 @@ namespace tp_web_equipo_27
             string id = ((Button)sender).CommandArgument;
             Response.Redirect("Producto.aspx?id=" + id);
         }
-
-        protected void VerCarrito_Click(object sender, EventArgs e)
-        {
-            Response.Redirect("CarritoCompras.aspx");
-        }
     }
 }

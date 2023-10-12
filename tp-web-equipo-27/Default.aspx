@@ -49,9 +49,6 @@
                 </asp:Repeater>
             </div>
             <br />
-            <div class="position-absolute end-50">
-                <asp:Button ID="VerCarrito" CssClass="btn btn-primary" runat="server" Text="Ir al carrito" OnClick="VerCarrito_Click" />
-            </div>
         </div>
         <div class="col-1"></div>
     </div>

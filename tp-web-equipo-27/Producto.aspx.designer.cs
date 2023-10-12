@@ -24,6 +24,15 @@ namespace tp_web_equipo_27
         protected global::System.Web.UI.WebControls.Label lblNombre;
 
         /// <summary>
+        /// Control lblMarca.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblMarca;
+
+        /// <summary>
         /// Control lblDescripcion.
         /// </summary>
         /// <remarks>
@@ -40,15 +49,6 @@ namespace tp_web_equipo_27
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblPrecio;
-
-        /// <summary>
-        /// Control lblMarca.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblMarca;
 
         /// <summary>
         /// Control lblCategoria.

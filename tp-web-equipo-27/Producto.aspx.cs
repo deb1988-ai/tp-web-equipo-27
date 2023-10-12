@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
+using System.Web.UI.HtmlControls;
 using System.Web.UI.WebControls;
 
 namespace tp_web_equipo_27
@@ -22,7 +23,6 @@ namespace tp_web_equipo_27
             idArticuloSeleccionado = Convert.ToInt32(Request.QueryString["id"]);
 
             ArticuloNegocio negocio = new ArticuloNegocio();
-
             ListaArticulos = negocio.listarArticulos();
 
             ImagenesNegocio negocioImagen = new ImagenesNegocio();
@@ -53,11 +53,15 @@ namespace tp_web_equipo_27
                    // repRepetidorImagenes.DataBind();
                     lblNombre.Text = articulo.Nombre;
                     lblDescripcion.Text = articulo.Descripcion;
+                    lblMarca.Text = articulo.Marca.Descripcion;
                     lblPrecio.Text = Math.Round(articulo.Precio,2).ToString();
                 }
-            }else
+            }
+            else
             {
                 lblError.Text = "Articulo no encontrado.";
+                Response.Redirect("Default.aspx");
+
             }
         }
 

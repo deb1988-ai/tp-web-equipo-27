@@ -7,4 +7,9 @@
 
     </asp:GridView>
     <asp:Label ID="mensaje" runat="server" Text=""></asp:Label>
+    <% if(Session.Count !=0)
+            {
+            %>
+    <asp:Button ID="ButtonVaciar" runat="server" Text="Vaciar carrito" OnClick="ButtonVaciar_Click" />
+          <%  }%>
 </asp:Content>

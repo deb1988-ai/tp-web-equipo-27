@@ -17,14 +17,28 @@ namespace tp_web_equipo_27
             ArticuloNegocio Negocio = new ArticuloNegocio();
             if(Session.Count != 0 )
             {
-                List<Carrito> listaArticulosCarrito = (List<Carrito>)Session[""];
-                dgvCarrito.DataSource = Session;
+                List<Carrito> listaArticulosCarrito = (List<Carrito>)Session["ListaCarrito"];
+                dgvCarrito.DataSource = listaArticulosCarrito;
                 dgvCarrito.DataBind();
             } else
             {
                 mensaje.Text = "El carrito se encuentra vacio.";
             }
             
+        }
+
+        protected void ButtonVaciar_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                Session.Clear();
+                Response.Redirect("CarritoCompras.aspx");
+            }
+            catch (Exception ex)
+            {
+                mensaje.Text = ex.ToString();
+                throw;
+            }
         }
     }
 }

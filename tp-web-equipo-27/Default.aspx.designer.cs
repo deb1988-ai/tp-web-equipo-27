@@ -24,13 +24,31 @@ namespace tp_web_equipo_27
         protected global::System.Web.UI.WebControls.DropDownList DropDownListFiltro;
 
         /// <summary>
-        /// Control DropDownListFiltroSeleccionado.
+        /// Control DropDownListCategoria.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList DropDownListFiltroSeleccionado;
+        protected global::System.Web.UI.WebControls.DropDownList DropDownListCategoria;
+
+        /// <summary>
+        /// Control DropDownListMarca.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList DropDownListMarca;
+
+        /// <summary>
+        /// Control ButtonFiltrar.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button ButtonFiltrar;
 
         /// <summary>
         /// Control repRepetidor.
@@ -40,5 +58,14 @@ namespace tp_web_equipo_27
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Repeater repRepetidor;
+
+        /// <summary>
+        /// Control btnDetalle.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnDetalle;
     }
 }

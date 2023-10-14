@@ -18,6 +18,7 @@ namespace tp_web_equipo_27
         public Articulo articulo = new Articulo();
         public List<Articulo> ListaArticulos { get; set; }
         public List<Imagenes> ListaImagenes { get; set; }
+
         protected void Page_Load(object sender, EventArgs e)
         {
             idArticuloSeleccionado = Convert.ToInt32(Request.QueryString["id"]);
@@ -50,8 +51,6 @@ namespace tp_web_equipo_27
                         listaUrlImagenes.Add(item.ImagenUrl);
                     }
                   
-                   // repRepetidorImagenes.DataSource = listaUrlImagenes;
-                   // repRepetidorImagenes.DataBind();
                     lblNombre.Text = articulo.Nombre;
                     lblDescripcion.Text = articulo.Descripcion;
                     lblMarca.Text = articulo.Marca.Descripcion;
@@ -80,7 +79,7 @@ namespace tp_web_equipo_27
             {
                 idArticuloSeleccionado = Convert.ToInt32(Request.QueryString["id"]);
                 carrito.Articulo = articulo;
-                carrito.Cantidad = int.Parse(txtCantidad.Text.ToString());
+                carrito.Cantidad = Convert.ToInt32(txtCantidad.Text);
             }
 
            if (Session[idArticuloSeleccionado.ToString()] != null)

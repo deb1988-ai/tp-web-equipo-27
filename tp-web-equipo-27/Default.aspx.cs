@@ -17,15 +17,27 @@ namespace tp_web_equipo_27
         {
             ArticuloNegocio negocio = new ArticuloNegocio();
             ListaArticulos = negocio.listarArticulos();
-            ListItem item0 = new ListItem("--------", "0");
-            ListItem item1 = new ListItem("Categoria", "1");
-            ListItem item2 = new ListItem("Marca", "2");
-            DropDownListFiltro.Items.Add(item0);
-            DropDownListFiltro.Items.Add(item1);
-            DropDownListFiltro.Items.Add(item2);
+            CategoriaNegocio categoriaNegocio = new CategoriaNegocio();
+            List<Categorias> categorias = new List<Categorias>();
+            categorias = categoriaNegocio.listar();
+
+            MarcaNegocio marcaNegocio = new MarcaNegocio();
+            List<Marcas> marcas = new List<Marcas>();
+            marcas = marcaNegocio.listarMarcas();
+
 
             if (!IsPostBack)
             {
+                ListItem item0 = new ListItem("--------", "0");
+                ListItem item1 = new ListItem("Categoria", "1");
+                ListItem item2 = new ListItem("Marca", "2");
+                DropDownListFiltro.Items.Add(item0);
+                DropDownListFiltro.Items.Add(item1);
+                DropDownListFiltro.Items.Add(item2);
+                DropDownListCategoria.DataSource = categorias;
+                DropDownListCategoria.DataBind();
+                DropDownListMarca.DataSource = marcas;
+                DropDownListMarca.DataBind();
                 repRepetidor.DataSource = ListaArticulos;
                 repRepetidor.DataBind();
             }
@@ -43,29 +55,22 @@ namespace tp_web_equipo_27
 
         }
 
-        protected void DropDownListFiltroSeleccionado_SelectedIndexChanged(object sender, EventArgs e)
+        protected void ButtonFiltrar_Click(object sender, EventArgs e)
         {
-            DropDownListFiltroSeleccionado.Items.Clear();
-            if (DropDownListFiltro.SelectedItem.ToString() == "Categoria")
-            {
-                CategoriaNegocio categoriaNegocio = new CategoriaNegocio();
-                List<Categorias> categorias = new List<Categorias>();
-                categorias = categoriaNegocio.listar();
-                foreach (Categorias item in categorias)
-                {DropDownListFiltroSeleccionado.Items.Add(item.Descripcion.ToString());  
-                }
-            }
-            else if( DropDownListFiltro.SelectedItem.ToString() == "Marca")
-            {
-                MarcaNegocio marcaNegocio = new MarcaNegocio();
-                List<Marcas> marcas = new List<Marcas>();
-                marcas = marcaNegocio.listarMarcas();
-                foreach (Marcas item in marcas)
-                {
+            ArticuloNegocio negocio = new ArticuloNegocio();
+            ListaArticulos = negocio.listarArticulos();
+            List<Articulo> listaFiltrada = new List<Articulo>();
 
-                    DropDownListFiltroSeleccionado.Items.Add(item.Descripcion.ToString());
-                }
-            }
+        }
+
+        protected void DropDownListMarca_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void DropDownListCategoria_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

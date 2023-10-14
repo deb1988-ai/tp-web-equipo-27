@@ -15,7 +15,18 @@
     <% if(Session.Count !=0)
             {
             %>
-    <asp:Label ID="LabelTotalText" runat="server" Text="Total:"></asp:Label><asp:Label ID="LabelTotal" runat="server" Text="Label"></asp:Label>
+    <div class="container text-center">
+  <div class="row">
+    <div class="col">
+    </div>
+    <div class="col">
+    </div>
+    <div class="col">
+      <asp:Label ID="LabelTotalText" runat="server" Text="Total:" CssClass="text-bg-light p-3"></asp:Label><asp:Label ID="LabelTotal" runat="server" Text="Label" CssClass="text-bg-light p-3"></asp:Label>
+    </div>
+  </div>
+</div>
+    
     <br />
     <asp:Button ID="ButtonVaciar" runat="server" Text="Vaciar carrito" OnClick="ButtonVaciar_Click" />
           <%  }%>

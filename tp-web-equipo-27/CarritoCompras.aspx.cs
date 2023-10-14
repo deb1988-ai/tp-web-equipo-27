@@ -24,7 +24,7 @@ namespace tp_web_equipo_27
 
             if (Session.Count != 0)
             {
-                for(int i =0; i< Session.Count; i++)
+                for(int i = 0; i<Session.Count; i++)
                 {
                     foreach (Articulo item in ListaArticulos)
                     {
@@ -41,7 +41,7 @@ namespace tp_web_equipo_27
                 dgvCarrito.DataBind();
                 foreach (Carrito item in listaArticulosCarrito)
                 {
-                    //total += item.Cantidad * item.Articulo.Precio;
+                    total += item.Cantidad * item.Articulo.Precio;
                 }
                 LabelTotal.Text = total.ToString() + "$.";
             }

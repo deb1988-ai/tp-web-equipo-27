@@ -1,4 +1,5 @@
 ﻿using Domain;
+using dominio;
 using negocio;
 using System;
 using System.Collections.Generic;
@@ -12,19 +13,43 @@ namespace tp_web_equipo_27
 {
     public partial class CarritoCompras : System.Web.UI.Page
     {
+        private decimal total = 0;
+
+        List<Carrito> listaArticulosCarrito =  new List<Carrito>();
         protected void Page_Load(object sender, EventArgs e)
         {
             ArticuloNegocio Negocio = new ArticuloNegocio();
-            if(Session.Count != 0 )
+            Carrito carrito = new Carrito();
+            List<Articulo> ListaArticulos = Negocio.listarArticulos();
+
+            if (Session.Count != 0)
             {
-                List<Carrito> listaArticulosCarrito = (List<Carrito>)Session["ListaCarrito"];
+                for(int i =0; i< Session.Count; i++)
+                {
+                    foreach (Articulo item in ListaArticulos)
+                    {
+                        if(Session.Keys.Get(i) == item.Id.ToString())
+                        {
+                            carrito.Cantidad = (int)Session[item.Id.ToString()];
+                            carrito.IdArticulo = item.Id;
+                            carrito.Articulo = item;
+                            listaArticulosCarrito.Add(carrito);
+                        }
+                    }
+                }
                 dgvCarrito.DataSource = listaArticulosCarrito;
                 dgvCarrito.DataBind();
-            } else
+                foreach (Carrito item in listaArticulosCarrito)
+                {
+                    //total += item.Cantidad * item.Articulo.Precio;
+                }
+                LabelTotal.Text = total.ToString() + "$.";
+            }
+            else
             {
                 mensaje.Text = "El carrito se encuentra vacio.";
             }
-            
+
         }
 
         protected void ButtonVaciar_Click(object sender, EventArgs e)
@@ -39,6 +64,24 @@ namespace tp_web_equipo_27
                 mensaje.Text = ex.ToString();
                 throw;
             }
+        }
+
+        protected void dgvCarrito_SelectedIndexChanged(object sender, EventArgs e)
+        {
+           /* var texto = dgvCarrito.SelectedRow.Cells[0].Text;
+            var id = dgvCarrito.SelectedDataKey.Value.ToString();
+            List<Carrito> listaArticulosCarrito = (List<Carrito>)Session["ListaCarrito"];
+            for (int i = 0;i< listaArticulosCarrito.Count;i++) {
+            if(Convert.ToInt32(id) == listaArticulosCarrito[i].IdArticulo)
+                {
+                    listaArticulosCarrito.RemoveAt(i);
+                }
+            }
+            if(listaArticulosCarrito.Count > 0)
+            {
+                Session.Add("ListaCarrito", listaArticulosCarrito);
+            Response.Redirect("CarritoCompras.aspx");
+            }*/
         }
     }
 }

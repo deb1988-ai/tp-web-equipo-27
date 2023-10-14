@@ -23,6 +23,7 @@ namespace tp_web_equipo_27
             idArticuloSeleccionado = Convert.ToInt32(Request.QueryString["id"]);
 
             ArticuloNegocio negocio = new ArticuloNegocio();
+
             ListaArticulos = negocio.listarArticulos();
 
             ImagenesNegocio negocioImagen = new ImagenesNegocio();
@@ -69,37 +70,27 @@ namespace tp_web_equipo_27
         {
             Carrito carrito = new Carrito();
 
-            List<Carrito> ListaCarrito;
+            ArticuloNegocio negocio = new ArticuloNegocio();
 
-                if (!IsPostBack)
+            ListaArticulos = negocio.listarArticulos();
+            
+            Articulo articulo = new Articulo();
+
+            if (!IsPostBack)
             {
                 idArticuloSeleccionado = Convert.ToInt32(Request.QueryString["id"]);
-
-                
-                for (int i = 0; i < ListaArticulos.Count; i++)
-                {
-                    if (idArticuloSeleccionado == ListaArticulos[i].Id)
-                    {
-                        articulo = ListaArticulos[i];
-                    }
-                }
-                carrito.IdArticulo = articulo.Id;
                 carrito.Articulo = articulo;
-                carrito.Cantidad = Convert.ToInt32(txtCantidad.Text);
-            }
-            if (Session["ListaCarrito"] != null)
-            {
-                ListaCarrito = (List<Carrito>)Session["ListaCarrito"];
-            }
-            else
-            {
-                ListaCarrito = new List<Carrito>();
+                carrito.Cantidad = int.Parse(txtCantidad.Text.ToString());
             }
 
-            ListaCarrito.Add(carrito);
-
-            Session["ListaCarrito"] = ListaCarrito;
-
+           if (Session[idArticuloSeleccionado.ToString()] != null)
+           {
+                Session[idArticuloSeleccionado.ToString()] = (int)Session[idArticuloSeleccionado.ToString()]+1;
+            }
+           else
+           {
+                Session.Add(idArticuloSeleccionado.ToString(), 1);
+            }             
             Response.Redirect("Default.aspx");
         }
     }

@@ -8,6 +8,9 @@
         <div class="col">
             <br />
                 <h1>Listado de artículos </h1>
+            <p>Filtrar por:</p>
+            <asp:DropDownList ID="DropDownListFiltro" runat="server" OnSelectedIndexChanged="DropDownListFiltro_SelectedIndexChanged"></asp:DropDownList>
+            <asp:DropDownList ID="DropDownListFiltroSeleccionado" runat="server" OnSelectedIndexChanged="DropDownListFiltroSeleccionado_SelectedIndexChanged"></asp:DropDownList>
             <div class="row row-cols-1 row-cols-md-3 g-4 p-3 mt-n1">
                 <asp:Repeater runat="server" ID="repRepetidor">
                     <ItemTemplate>

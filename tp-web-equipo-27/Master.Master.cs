@@ -12,14 +12,10 @@ namespace tp_web_equipo_27
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            List<Carrito> ListaCarrito;
-
-            if (Session["ListaCarrito"] != null)
+            if (Session.Count >0)
             {
-                ListaCarrito = (List<Carrito>)Session["ListaCarrito"];
-                contadorCarrito.InnerText = ListaCarrito.Count().ToString();
+                contadorCarrito.InnerText = Session.Count.ToString();
             }
-
         }
     }
 }

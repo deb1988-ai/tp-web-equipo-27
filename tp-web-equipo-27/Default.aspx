@@ -7,38 +7,39 @@
         <div class="col-1"></div>
         <div class="col">
             <br />
-                <h1>Listado de artículos </h1>
+            <h1>Listado de artículos </h1>
             <p>Filtrar por:</p>
             <asp:DropDownList ID="DropDownListFiltro" runat="server" OnSelectedIndexChanged="DropDownListFiltro_SelectedIndexChanged" AutoPostBack="true"></asp:DropDownList>
-            
-            <%if(DropDownListFiltro.SelectedIndex > 0)
-            {
+
+            <%if (DropDownListFiltro.SelectedIndex > 0)
+                {
             %>
-            <%if(DropDownListFiltro.SelectedIndex == 1)
-            {
+            <%if (DropDownListFiltro.SelectedIndex == 1)
+                {
             %>
             <asp:DropDownList ID="DropDownListCategoria" runat="server" OnSelectedIndexChanged="DropDownListCategoria_SelectedIndexChanged" AutoPostBack="true"></asp:DropDownList>
-            <%  } else if(DropDownListFiltro.SelectedIndex == 2)
+            <%  }
+                else if (DropDownListFiltro.SelectedIndex == 2)
                 { %>
-                    <asp:DropDownList ID="DropDownListMarca" runat="server" OnSelectedIndexChanged="DropDownListMarca_SelectedIndexChanged" AutoPostBack="true"></asp:DropDownList>
-               <% }%>
-            
-            <asp:Button ID="ButtonFiltrar" runat="server" Text="Filtrar" OnClick="ButtonFiltrar_Click" CssClass="btn btn-light"/>
-          <%  } %>
-            
+            <asp:DropDownList ID="DropDownListMarca" runat="server" OnSelectedIndexChanged="DropDownListMarca_SelectedIndexChanged" AutoPostBack="true"></asp:DropDownList>
+            <% }%>
+
+            <asp:Button ID="ButtonFiltrar" runat="server" Text="Filtrar" OnClick="ButtonFiltrar_Click" CssClass="btn btn-light" AutoPostBack="true"/>
+            <%  } %>
+
             <div class="row row-cols-1 row-cols-md-3 g-4 p-3 mt-n1">
-                
+
                 <asp:Repeater runat="server" ID="repRepetidor">
                     <ItemTemplate>
                         <div class="col">
-                            <div class="card h-100 mb-3 border-info bg-dark text-white text-center" >
+                            <div class="card h-100 mb-3 border-info bg-dark text-white text-center">
                                 <div class="card-header">
                                     <%#Eval("Categoria") %>
                                 </div>
                                 <div id="carouselExampleIndicators" class="carousel slide">
                                     <div class="carousel-inner">
                                         <div class="carousel-item active">
-                                            <img src="<%#Eval("ListaImagenes[0].ImagenUrl") %>" class="d-block" style="margin:auto;height:180px" alt="...">
+                                            <img src="<%#Eval("ListaImagenes[0].ImagenUrl") %>" class="d-block" style="margin: auto; height: 180px" alt="...">
                                         </div>
                                     </div>
                                     <br />
@@ -66,7 +67,7 @@
                         </div>
                     </ItemTemplate>
                 </asp:Repeater>
-<!--
+                <!--
                 <%foreach (dominio.Articulo articulo in ListaArticulos)
                     {
 
@@ -111,10 +112,10 @@
  </div>
                   <%  }
 
-                    %>--> 
+                    %>-->
             </div>
             <br />
-    </div>
+        </div>
         <div class="col-1"></div>
     </div>
 

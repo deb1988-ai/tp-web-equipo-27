@@ -3,12 +3,22 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <br />
-    <asp:GridView runat="server" CssClass="table" ID="dgvCarrito" AutoGenerateColumns ="false" OnSelectedIndexChanged="dgvCarrito_SelectedIndexChanged">
+    <asp:GridView runat="server" CssClass="table" ID="dgvCarrito" AutoGenerateColumns ="false" OnSelectedIndexChanged="dgvCarrito_SelectedIndexChanged" DataKeyNames="IdArticulo">
         <Columns>
             <asp:BoundField HeaderText="Nombre" DataField="Articulo.Nombre" />
+              <asp:TemplateField   HeaderText="Cantidad">            
+                <ItemTemplate>
+                    <asp:TextBox ID="Cantidad" Width="40" runat="server" DataField="Cantidad"></asp:TextBox> 
+                </ItemTemplate>        
+        </asp:TemplateField>  
             <asp:BoundField HeaderText="Cantidad" DataField="Cantidad" />
             <asp:BoundField HeaderText="Precio" DataField="Articulo.Precio" />
-            <asp:CommandField ShowSelectButton="true" SelectText="Seleccionar" HeaderText="Acción" />
+            <asp:CommandField ShowSelectButton="true" SelectText="Seleccionar" HeaderText="Acción" ControlStyle-CssClass="form-check-input"/>
+            <asp:TemplateField HeaderText="Eliminar Artículo">            
+                <ItemTemplate>
+                    <asp:CheckBox id="Eliminar" runat="server"></asp:CheckBox>
+                </ItemTemplate>        
+        </asp:TemplateField> 
         </Columns>
     </asp:GridView>
     <asp:Label ID="mensaje" runat="server" Text=""></asp:Label>
@@ -28,6 +38,8 @@
 </div>
     
     <br />
+        <asp:Button ID="ButtonActualizar" runat="server" Text="Eliminar" OnClick="ButtonActualizar_Click" AutoPostBack="true"/>
     <asp:Button ID="ButtonVaciar" runat="server" Text="Vaciar carrito" OnClick="ButtonVaciar_Click" />
           <%  }%>
+    <asp:Label ID="Label1" runat="server" Text="Label"></asp:Label>
 </asp:Content>

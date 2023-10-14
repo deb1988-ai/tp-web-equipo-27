@@ -13,6 +13,10 @@ namespace tp_web_equipo_27
     {
         public List<Articulo> ListaArticulos { get; set; }
         public int idArticuloSeleccionado { get; set; }
+        public string FiltroSeleccionado { get; set; }
+        public string CategoriaSeleccionada { get; set; }
+        public  string MarcaSeleccionada { get; set; }
+
         protected void Page_Load(object sender, EventArgs e)
         {
             ArticuloNegocio negocio = new ArticuloNegocio();
@@ -25,6 +29,11 @@ namespace tp_web_equipo_27
             List<Marcas> marcas = new List<Marcas>();
             marcas = marcaNegocio.listarMarcas();
 
+            FiltroSeleccionado = Request.QueryString["Filtro"];
+            CategoriaSeleccionada = Request.QueryString["Categoria"];
+            MarcaSeleccionada = Request.QueryString["Marca"];
+
+            List<Articulo> ListaFiltrada = new List<Articulo>();
 
             if (!IsPostBack)
             {
@@ -38,8 +47,35 @@ namespace tp_web_equipo_27
                 DropDownListCategoria.DataBind();
                 DropDownListMarca.DataSource = marcas;
                 DropDownListMarca.DataBind();
-                repRepetidor.DataSource = ListaArticulos;
-                repRepetidor.DataBind();
+                if (FiltroSeleccionado == "1")
+                {
+                    for (int i = 0; i < ListaArticulos.Count; i++)
+                    {
+                        if (ListaArticulos[i].Categoria.ToString() == CategoriaSeleccionada)
+                        {
+                            ListaFiltrada.Add(ListaArticulos[i]);
+                        }
+                    }
+                    repRepetidor.DataSource = ListaFiltrada;
+                    repRepetidor.DataBind();
+                }
+                else if (FiltroSeleccionado == "2")
+                {
+                    for (int i = 0; i < ListaArticulos.Count; i++)
+                    {
+                        if (ListaArticulos[i].Marca.ToString() == MarcaSeleccionada)
+                        {
+                            ListaFiltrada.Add(ListaArticulos[i]);
+                        }
+                    }
+                    repRepetidor.DataSource = ListaFiltrada;
+                    repRepetidor.DataBind();
+                }
+                else
+                {
+                    repRepetidor.DataSource = ListaArticulos;
+                    repRepetidor.DataBind();
+                }
             }
         }
 
@@ -57,18 +93,15 @@ namespace tp_web_equipo_27
 
         protected void ButtonFiltrar_Click(object sender, EventArgs e)
         {
-            ArticuloNegocio negocio = new ArticuloNegocio();
-            ListaArticulos = negocio.listarArticulos();
-            List<Articulo> listaFiltrada = new List<Articulo>();
-            foreach (Articulo item in ListaArticulos)
+            string filtro = DropDownListFiltro.SelectedIndex.ToString();
+            if(DropDownListFiltro.SelectedIndex == 1)
             {
-                if(DropDownListFiltro.SelectedIndex == 1)
-                {
-                    if(item.Categoria.ToString() == DropDownListCategoria.SelectedValue)
-                    {
-                        listaFiltrada.Add(item);
-                    }
-                }
+                string opcion = DropDownListCategoria.SelectedItem.ToString();
+                Response.Redirect("Default.aspx?Filtro=" + filtro + "?Categoria=" + opcion);
+            } else if (DropDownListFiltro.SelectedIndex == 2)
+            {
+                string opcion = DropDownListMarca.SelectedItem.ToString();
+                Response.Redirect("Default.aspx?Filtro=" + filtro + "?Marca=" + opcion);
             }
         }
 

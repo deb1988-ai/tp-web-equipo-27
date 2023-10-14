@@ -4,6 +4,7 @@ using negocio;
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Drawing;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -82,6 +83,20 @@ namespace tp_web_equipo_27
                 Session.Add("ListaCarrito", listaArticulosCarrito);
             Response.Redirect("CarritoCompras.aspx");
             }*/
+        }
+
+        protected void ButtonActualizar_Click(object sender, EventArgs e)
+        {
+           for(int i = 0; i< listaArticulosCarrito.Count; i++) 
+            {
+                int id = Convert.ToInt32(dgvCarrito.SelectedDataKey.Value.ToString());
+
+                List<Carrito> aux = listaArticulosCarrito;
+                Carrito ArticuloAEliminar = aux.Find(x => x.IdArticulo == id);
+                Label1.Text = ArticuloAEliminar.IdArticulo.ToString();
+                Session.Remove(ArticuloAEliminar.IdArticulo.ToString());
+            }
+            Response.Redirect("CarritoCompras.aspx");
         }
     }
 }

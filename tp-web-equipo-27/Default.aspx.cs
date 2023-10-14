@@ -60,7 +60,16 @@ namespace tp_web_equipo_27
             ArticuloNegocio negocio = new ArticuloNegocio();
             ListaArticulos = negocio.listarArticulos();
             List<Articulo> listaFiltrada = new List<Articulo>();
-
+            foreach (Articulo item in ListaArticulos)
+            {
+                if(DropDownListFiltro.SelectedIndex == 1)
+                {
+                    if(item.Categoria.ToString() == DropDownListCategoria.SelectedValue)
+                    {
+                        listaFiltrada.Add(item);
+                    }
+                }
+            }
         }
 
         protected void DropDownListMarca_SelectedIndexChanged(object sender, EventArgs e)

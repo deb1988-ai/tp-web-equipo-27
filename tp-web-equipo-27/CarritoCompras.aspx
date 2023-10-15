@@ -4,16 +4,16 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <br />
-    <asp:GridView runat="server" CssClass="table" ID="dgvCarrito" AutoGenerateColumns="false" OnSelectedIndexChanged="dgvCarrito_SelectedIndexChanged" DataKeyNames="IdArticulo">
+    <asp:GridView runat="server" CssClass="table" ID="dgvCarrito" AutoGenerateColumns="false" OnSelectedIndexChanged="dgvCarrito_SelectedIndexChanged" DataKeyNames="IdArticulo" OnRowCommand="dgvCarrito_RowCommand">
         <Columns>
             <asp:BoundField HeaderText="Nombre" DataField="Articulo.Nombre" />
             <asp:BoundField HeaderText="Cantidad" DataField="Cantidad" />
             <asp:BoundField HeaderText="Precio" DataField="Articulo.Precio" />
 
-            <asp:CommandField ShowSelectButton="true" SelectText="Seleccionar" HeaderText="Acción" ControlStyle-CssClass="form-check-input" />
+            <asp:CommandField ShowSelectButton="true" SelectText="Seleccionar" HeaderText="Acción" ControlStyle-CssClass="form-check-input"/>
             <asp:TemplateField HeaderText="Eliminar Artículo">
                 <ItemTemplate>
-                    <asp:CheckBox ID="Eliminar" runat="server"></asp:CheckBox>
+                    <asp:LinkButton Text="Eliminar" runat="server" ID="btnEliminar" CommandName="btnEliminar" CommandArgument='<%#Eval("IdArticulo") %>'/>
                 </ItemTemplate>
             </asp:TemplateField>
         </Columns>
@@ -38,4 +38,5 @@
     <asp:Button ID="ButtonActualizar" runat="server" Text="Eliminar" OnClick="ButtonActualizar_Click" AutoPostBack="true" />
     <asp:Button ID="ButtonVaciar" runat="server" Text="Vaciar carrito" OnClick="ButtonVaciar_Click" />
     <%  }%>
+    <asp:Label ID="Label1" runat="server" Text="Label"></asp:Label>
 </asp:Content>

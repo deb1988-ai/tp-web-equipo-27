@@ -1,5 +1,5 @@
-﻿using Domain;
-using dominio;
+﻿using dominio;
+using Domain;
 using negocio;
 using System;
 using System.Collections.Generic;
@@ -70,20 +70,6 @@ namespace tp_web_equipo_27
 
         protected void dgvCarrito_SelectedIndexChanged(object sender, EventArgs e)
         {
-           /* var texto = dgvCarrito.SelectedRow.Cells[0].Text;
-            var id = dgvCarrito.SelectedDataKey.Value.ToString();
-            List<Carrito> listaArticulosCarrito = (List<Carrito>)Session["ListaCarrito"];
-            for (int i = 0;i< listaArticulosCarrito.Count;i++) {
-            if(Convert.ToInt32(id) == listaArticulosCarrito[i].IdArticulo)
-                {
-                    listaArticulosCarrito.RemoveAt(i);
-                }
-            }
-            if(listaArticulosCarrito.Count > 0)
-            {
-                Session.Add("ListaCarrito", listaArticulosCarrito);
-            Response.Redirect("CarritoCompras.aspx");
-            }*/
         }
 
         protected void ButtonActualizar_Click(object sender, EventArgs e)
@@ -104,6 +90,18 @@ namespace tp_web_equipo_27
             }
             
             Response.Redirect("CarritoCompras.aspx");
+        }
+
+        protected void dgvCarrito_RowCommand(object sender, GridViewCommandEventArgs e)
+        {
+            if (e.CommandName == "btnEliminar")
+            {
+                int ArticuloId = Convert.ToInt32(e.CommandArgument.ToString());
+                
+                    Session.Remove(ArticuloId.ToString());
+
+                Response.Redirect("CarritoCompras.aspx");
+            }
         }
     }
 }

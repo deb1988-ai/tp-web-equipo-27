@@ -9,8 +9,6 @@
             <asp:BoundField HeaderText="Nombre" DataField="Articulo.Nombre" />
             <asp:BoundField HeaderText="Cantidad" DataField="Cantidad" />
             <asp:BoundField HeaderText="Precio" DataField="Articulo.Precio" />
-
-            <asp:CommandField ShowSelectButton="true" SelectText="Seleccionar" HeaderText="Acción" ControlStyle-CssClass="form-check-input"/>
             <asp:TemplateField HeaderText="Eliminar Artículo">
                 <ItemTemplate>
                     <asp:LinkButton Text="Eliminar" runat="server" ID="btnEliminar" CommandName="btnEliminar" CommandArgument='<%#Eval("IdArticulo") %>'/>
@@ -35,8 +33,7 @@
     </div>
 
     <br />
-    <asp:Button ID="ButtonActualizar" runat="server" Text="Eliminar" OnClick="ButtonActualizar_Click" AutoPostBack="true" />
+    <!--<asp:Button ID="ButtonActualizar" runat="server" Text="Actualizar" OnClick="ButtonActualizar_Click" AutoPostBack="true" />-->
     <asp:Button ID="ButtonVaciar" runat="server" Text="Vaciar carrito" OnClick="ButtonVaciar_Click" />
     <%  }%>
-    <asp:Label ID="Label1" runat="server" Text="Label"></asp:Label>
 </asp:Content>

@@ -120,11 +120,11 @@
     <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\tp-winform-equipo-27\Domain\dominio.csproj">
+    <ProjectReference Include="Domain\dominio.csproj">
       <Project>{3ad7fdcb-ce14-40e8-8ddb-dddcb9ee211c}</Project>
       <Name>dominio</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\tp-winform-equipo-27\negocio\negocio.csproj">
+    <ProjectReference Include="negocio\negocio.csproj">
       <Project>{8642b27d-ad5a-4092-9b0f-5c0e251088b1}</Project>
       <Name>negocio</Name>
     </ProjectReference>

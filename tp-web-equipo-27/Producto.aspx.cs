@@ -79,16 +79,17 @@ namespace tp_web_equipo_27
             {
                 idArticuloSeleccionado = Convert.ToInt32(Request.QueryString["id"]);
                 carrito.Articulo = articulo;
-                carrito.Cantidad = Convert.ToInt32(txtCantidad.Text);
+                
             }
+            carrito.Cantidad = Convert.ToInt32(txtCantidad.Text);
 
-           if (Session[idArticuloSeleccionado.ToString()] != null)
+            if (Session[idArticuloSeleccionado.ToString()] != null)
            {
                 Session[idArticuloSeleccionado.ToString()] = (int)Session[idArticuloSeleccionado.ToString()]+1;
             }
            else
            {
-                Session.Add(idArticuloSeleccionado.ToString(), 1);
+                Session.Add(idArticuloSeleccionado.ToString(), carrito.Cantidad);
             }             
             Response.Redirect("Default.aspx");
         }

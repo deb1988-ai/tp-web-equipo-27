@@ -20,7 +20,7 @@ namespace tp_web_equipo_27
         protected void Page_Load(object sender, EventArgs e)
         {
             ArticuloNegocio Negocio = new ArticuloNegocio();
-            Carrito carrito = new Carrito();
+            Carrito carrito;
             List<Articulo> ListaArticulos = Negocio.listarArticulos();
 
             if (Session.Count != 0)
@@ -29,6 +29,7 @@ namespace tp_web_equipo_27
                 {
                     foreach (Articulo item in ListaArticulos)
                     {
+                        carrito = new Carrito();
                         if(Session.Keys.Get(i) == item.Id.ToString())
                         {
                             carrito.Cantidad = (int)Session[item.Id.ToString()];
@@ -87,15 +88,21 @@ namespace tp_web_equipo_27
 
         protected void ButtonActualizar_Click(object sender, EventArgs e)
         {
+           List<int> listaArticulosEliminar = new List<int>();
            for(int i = 0; i< listaArticulosCarrito.Count; i++) 
             {
                 int id = Convert.ToInt32(dgvCarrito.SelectedDataKey.Value.ToString());
 
-                List<Carrito> aux = listaArticulosCarrito;
-                Carrito ArticuloAEliminar = aux.Find(x => x.IdArticulo == id);
-                Label1.Text = ArticuloAEliminar.IdArticulo.ToString();
-                Session.Remove(ArticuloAEliminar.IdArticulo.ToString());
+                //List<Carrito> aux = listaArticulosCarrito;
+                //Carrito ArticuloAEliminar = aux.Find(x => x.IdArticulo == id);
+                listaArticulosEliminar.Add(id);
+        
             }
+            foreach (int item in listaArticulosEliminar)
+            {
+                Session.Remove(item.ToString());
+            }
+            
             Response.Redirect("CarritoCompras.aspx");
         }
     }

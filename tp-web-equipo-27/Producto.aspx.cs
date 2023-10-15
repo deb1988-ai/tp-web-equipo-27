@@ -45,7 +45,10 @@ namespace tp_web_equipo_27
                             articulo.ListaImagenes = item.ListaImagenes;
                         }
                     }
-
+                    if (Session[idArticuloSeleccionado.ToString()] != null)
+                    {
+                        txtCantidad.Text = idArticuloSeleccionado.ToString();
+                    }
                     foreach (var item in articulo.ListaImagenes)
                     {
                         listaUrlImagenes.Add(item.ImagenUrl);

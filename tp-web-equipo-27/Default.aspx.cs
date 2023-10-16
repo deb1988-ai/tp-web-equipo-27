@@ -47,30 +47,33 @@ namespace tp_web_equipo_27
                 DropDownListCategoria.DataBind();
                 DropDownListMarca.DataSource = marcas;
                 DropDownListMarca.DataBind();
-                if (FiltroSeleccionado == "1")
+                if (Request.QueryString["Filtro"]!= null)
                 {
-                    for (int i = 0; i < ListaArticulos.Count; i++)
+                    if (FiltroSeleccionado == "1")
                     {
-                        if (ListaArticulos[i].Categoria.ToString() == CategoriaSeleccionada)
+                        for (int i = 0; i < ListaArticulos.Count; i++)
                         {
-                            ListaFiltrada.Add(ListaArticulos[i]);
+                            if (ListaArticulos[i].Categoria.Descripcion == CategoriaSeleccionada)
+                            {
+                                ListaFiltrada.Add(ListaArticulos[i]);
+                            }
                         }
+                        repRepetidor.DataSource = ListaFiltrada;
+                        repRepetidor.DataBind();
                     }
-                    repRepetidor.DataSource = ListaFiltrada;
-                    repRepetidor.DataBind();
-                }
-                else if (FiltroSeleccionado == "2")
-                {
-                    for (int i = 0; i < ListaArticulos.Count; i++)
+                    else if (FiltroSeleccionado == "2")
                     {
-                        if (ListaArticulos[i].Marca.ToString() == MarcaSeleccionada)
+                        for (int i = 0; i < ListaArticulos.Count; i++)
                         {
-                            ListaFiltrada.Add(ListaArticulos[i]);
+                            if (ListaArticulos[i].Marca.Descripcion == MarcaSeleccionada)
+                            {
+                                ListaFiltrada.Add(ListaArticulos[i]);
+                            }
                         }
+                        repRepetidor.DataSource = ListaFiltrada;
+                        repRepetidor.DataBind();
                     }
-                    repRepetidor.DataSource = ListaFiltrada;
-                    repRepetidor.DataBind();
-                }
+                } 
                 else
                 {
                     repRepetidor.DataSource = ListaArticulos;
@@ -97,11 +100,11 @@ namespace tp_web_equipo_27
             if(DropDownListFiltro.SelectedIndex == 1)
             {
                 string opcion = DropDownListCategoria.SelectedItem.ToString();
-                Response.Redirect("Default.aspx?Filtro=" + filtro + "?Categoria=" + opcion);
+                Response.Redirect("Default.aspx?Filtro=" + filtro + "&Categoria=" + opcion, false);
             } else if (DropDownListFiltro.SelectedIndex == 2)
             {
                 string opcion = DropDownListMarca.SelectedItem.ToString();
-                Response.Redirect("Default.aspx?Filtro=" + filtro + "?Marca=" + opcion);
+                Response.Redirect("Default.aspx?Filtro=" + filtro + "&Marca=" + opcion, false);
             }
         }
 

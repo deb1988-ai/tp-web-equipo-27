@@ -49,7 +49,7 @@
                                 </div>
                                 <div class="card-body">
                                     <h5 class="card-title"><%#Eval("Nombre") %></h5>
-                                    <p class="card-text"><%#Eval("Precio") %></p>
+                                    <p class="card-text"><%# ((decimal)Eval("Precio")).ToString("N2") + " $"%></p>
                                     <asp:Button Text="Ver Producto" CssClass="btn btn-primary" runat="server" ID="btnDetalle" CommandArgument='<%#Eval("Id") %>' CommandName="ArticuloId" OnClick="btnDetalle_Click" />
                                 </div>
                                 <div class="card-footer">

@@ -24,7 +24,6 @@
                                     {
                                         foreach (dominio.Imagenes imagen in ListaImagenes)
                                         {
-
                             %>
                             <div class="carousel-item active">
                                 <img src="<%:imagen.ImagenUrl%>" class="d-block" alt="..." style="margin: auto; height: 300px">

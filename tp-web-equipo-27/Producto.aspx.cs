@@ -57,7 +57,7 @@ namespace tp_web_equipo_27
                     lblNombre.Text = articulo.Nombre;
                     lblDescripcion.Text = articulo.Descripcion;
                     lblMarca.Text = articulo.Marca.Descripcion;
-                    lblPrecio.Text = Math.Round(articulo.Precio,2).ToString();
+                    lblPrecio.Text = Math.Round(articulo.Precio,2).ToString() + " $";
                 }
             }
             else

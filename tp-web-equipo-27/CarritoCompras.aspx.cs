@@ -45,13 +45,12 @@ namespace tp_web_equipo_27
                 {
                     total += item.Cantidad * item.Articulo.Precio;
                 }
-                LabelTotal.Text = total.ToString() + "$.";
+                LabelTotal.Text = total.ToString("N2") + " $.";
             }
             else
             {
                 mensaje.Text = "El carrito se encuentra vacio.";
             }
-
         }
 
         protected void ButtonVaciar_Click(object sender, EventArgs e)
@@ -66,30 +65,6 @@ namespace tp_web_equipo_27
                 mensaje.Text = ex.ToString();
                 throw;
             }
-        }
-
-        protected void dgvCarrito_SelectedIndexChanged(object sender, EventArgs e)
-        {
-        }
-
-        protected void ButtonActualizar_Click(object sender, EventArgs e)
-        {
-           List<int> listaArticulosEliminar = new List<int>();
-           for(int i = 0; i< listaArticulosCarrito.Count; i++) 
-            {
-                int id = Convert.ToInt32(dgvCarrito.SelectedDataKey.Value.ToString());
-
-                //List<Carrito> aux = listaArticulosCarrito;
-                //Carrito ArticuloAEliminar = aux.Find(x => x.IdArticulo == id);
-                listaArticulosEliminar.Add(id);
-        
-            }
-            foreach (int item in listaArticulosEliminar)
-            {
-                Session.Remove(item.ToString());
-            }
-            
-            Response.Redirect("CarritoCompras.aspx");
         }
 
         protected void dgvCarrito_RowCommand(object sender, GridViewCommandEventArgs e)

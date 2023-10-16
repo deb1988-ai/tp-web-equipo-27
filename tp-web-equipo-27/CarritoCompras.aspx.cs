@@ -67,32 +67,6 @@ namespace tp_web_equipo_27
             }
         }
 
-       protected void ButtonActualizar_Click(object sender, EventArgs e)
-        {
-           List<int> listaArticulosActualizar = new List<int>();
-
-            foreach (GridViewRow row in dgvCarrito.Rows)
-            {
-                TextBox txtValor = (row.Cells[3].FindControl("txtCantidad") as TextBox);
-                int ArticuloId = Convert.ToInt32(dgvCarrito.DataKeys[row.RowIndex].Value);
-                string cantidad = txtValor.Text;
-
-                Session[ArticuloId.ToString()] = cantidad;
-            }
-
-            /*foreach (GridViewRow row in dgvCarrito.Rows)
-            {
-                if (row.RowType == DataControlRowType.DataRow)
-                {
-                    int ArticuloId = Convert.ToInt32(dgvCarrito.DataKeys[row.RowIndex].Value);
-                    int cantidad = int.Parse(((TextBox)row.Cells[3].FindControl("txtCantidad")).Text);
-                    Label1.Text = ArticuloId.ToString();
-                    Session[ArticuloId.ToString()] = cantidad;
-                }
-            }*/
-           Response.Redirect("CarritoCompras.aspx");
-        }
-
         protected void dgvCarrito_RowCommand(object sender, GridViewCommandEventArgs e)
         {
             if (e.CommandName == "btnEliminar")
